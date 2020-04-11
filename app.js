@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send(process.env.CAPTCHA_SECRET);
+  res.send("Working");
 });
 
 app.post("/", function (req, res) {

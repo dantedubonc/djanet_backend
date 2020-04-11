@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "djanetbackend",
+  "builds": [{ "src": "app.js", "use": "@now/node-server" }],
+  "routes": [
+    {
+      "src": "^/(.*)",
+      "dest": "/app.js",
+      "methods": ["GET", "POST"]
+    }
+   
+  ],
+  "env": {
+    "CAPTCHA_SECRET": "@captcha_secret",
+    "Username_ES": "@username_es",
+    "Password_ES":"@password_es",
+    "Host_ES":"@host_es",
+    "From_ES": "@from_es",
+    "SenderName_ES": "@sendername_es",
+    "BCC_ES": "@bcc_es",
+    "ReplyTo_ES":"@replyto_es",
+    "Subject_ES": "@subject_es"
+
+  }
+}
