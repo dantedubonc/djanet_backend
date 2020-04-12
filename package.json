@@ -12,6 +12,7 @@
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "dotenv": "^8.2.0",
+    "ejs": "^3.0.2",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.11.0",

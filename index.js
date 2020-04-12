@@ -10,6 +10,7 @@ const nodemailer = require("nodemailer");
 const emailConf = require("./emailConf");
 const respond = require("koa-respond");
 const fetch = require("node-fetch");
+const ejs = require("ejs");
 
 var app = new Koa();
 app.use(cors());
@@ -66,15 +67,19 @@ const sendEmail = async (ctx, next) => {
     },
   });
 
+  const html = await ejs.renderFile(__dirname + "/emails/mail.ejs", {
+    name: ctx.request.body.Name,
+  }, {async: true});
+
   const info = await transporter.sendMail({
     from: `${conf.SenderName} <${conf.From}>`, // sender address
     to: formData.Email, // list of receivers
     bcc: conf.BCC,
     subject: conf.Subject, // Subject line
     text: conf.Message, // plain text body
-    html: conf.Message, // html body
+    html: html, // html body
   });
-  ctx.state.data = info.messageId
+  ctx.state.data = info.messageId;
 
   next();
 };
@@ -89,7 +94,15 @@ router.get("/", (ctx, next) => {
   ctx.body = "Hello World";
 });
 
-router.post("/", handleErrors,getCaptcha, validateCaptcha, sendEmail, sendData);
+router.post(
+  "/",
+  handleErrors,
+  getCaptcha,
+  validateCaptcha,
+ 
+  sendEmail,
+  sendData
+);
 
 app.use(router.routes()).use(router.allowedMethods());
 
