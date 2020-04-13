@@ -67,8 +67,15 @@ const sendEmail = async (ctx, next) => {
     },
   });
 
-  const html = await ejs.renderFile(__dirname + "/emails/mail.ejs", {
-    name: ctx.request.body.Name,
+  const html = await ejs.renderFile(__dirname + "/emails/djanet.ejs", {
+    name: formData.Name,
+    company: formData.Enterprise,
+    lastName: formData.Surname,
+    city: formData.City,
+    phone: formData.Phone,
+    message: formData.Question,
+    country: formData.Country,
+    email: formData.Email
   }, {async: true});
 
   const info = await transporter.sendMail({
