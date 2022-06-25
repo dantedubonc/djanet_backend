@@ -19,7 +19,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-respond": "^2.1.0",
     "koa-router": "^8.0.8",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "nodemailer": "^6.4.6",
     "request": "^2.88.2"
   }
